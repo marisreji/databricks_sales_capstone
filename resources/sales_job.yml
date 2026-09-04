@@ -8,7 +8,7 @@ resources:
           notebook_task:
             notebook_path: ../src/01_bronze_ingestion.py.ipynb
             base_parameters:
-              source_path: "/Volumes/workspace/default/raw_data/sales_source_1500.csv"
+              source_path: "/Volumes/workspace/ibm/raw_data/sales_source_1500.csv"
           environment_key: default
 
         - task_key: data_quality
