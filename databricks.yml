@@ -1,0 +1,11 @@
+bundle:
+  name: databricks_cicd_demo
+
+include:
+  - resources/*.yml
+
+targets:
+
+  dev:
+    mode: development
+    default: true

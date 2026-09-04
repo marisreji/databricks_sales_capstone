@@ -1,16 +1,30 @@
-bundle:
-  name: databricks_sales_capstone
+name: Deploy and Run Databricks Job
 
-include:
-  - resources/*.yml
+on:
+  push:
+    branches:
+      - main
 
-targets:
-  dev:
-    mode: development
-    default: true
-    workspace:
-      host: https://<your-workspace-url>.cloud.databricks.com
-  prod:
-    mode: production
-    workspace:
-      host: https://<your-workspace-url>.cloud.databricks.com
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Databricks CLI
+        uses: databricks/setup-cli@main
+
+      - name: Deploy bundle
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+        run: databricks bundle deploy --target dev
+
+      - name: Run Databricks Job
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+        run: databricks bundle run sales_job --target dev
