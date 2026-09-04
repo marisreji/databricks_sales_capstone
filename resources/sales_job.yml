@@ -6,7 +6,7 @@ resources:
       tasks:
         - task_key: bronze_ingestion
           notebook_task:
-            notebook_path: ../src/01_bronze_ingestion.py
+            notebook_path: ../src/01_bronze_ingestion.py.pynb
             base_parameters:
               source_path: "/Volumes/workspace/default/raw_data/sales_source_1500.csv"
           environment_key: default
@@ -15,21 +15,21 @@ resources:
           depends_on:
             - task_key: bronze_ingestion
           notebook_task:
-            notebook_path: ../src/00_data_quality_report.py
+            notebook_path: ../src/00_data_quality_report.py.pynb
           environment_key: default
 
         - task_key: silver_cleaning
           depends_on:
             - task_key: data_quality
           notebook_task:
-            notebook_path: ../src/02_silver_cleaning.py
+            notebook_path: ../src/02_silver_cleaning.py.pynb
           environment_key: default
 
         - task_key: gold_analytics
           depends_on:
             - task_key: silver_cleaning
           notebook_task:
-            notebook_path: ../src/03_gold_analytics.py
+            notebook_path: ../src/03_gold_analytics.py.pynb
           environment_key: default
 
       environments:
