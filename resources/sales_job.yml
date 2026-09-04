@@ -1,6 +1,6 @@
 resources:
   jobs:
-    sales_etl_job:
+    sales_job:
       name: sales_etl_job
 
       tasks:
