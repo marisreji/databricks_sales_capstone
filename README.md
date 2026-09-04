@@ -1,4 +1,4 @@
-# Databricks Sales Capstone Project 
+# Databricks Sales Capstone Project  
 
 End-to-end ETL pipeline: Bronze → Data Quality → Silver → Gold, orchestrated via Databricks Jobs 
 and deployed using Databricks Asset Bundles with GitHub Actions CI/CD.
